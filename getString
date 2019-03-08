@@ -1,0 +1,15 @@
+try {
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+            Configuration config = getResources().getConfiguration();
+
+            String lang = settings.getString("LANG", "");
+            if (!"".equals(lang) && !config.locale.getLanguage().equals(lang)) {
+                Locale locale = new Locale(lang);
+                Locale.setDefault(locale);
+                config.locale = locale;
+                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
