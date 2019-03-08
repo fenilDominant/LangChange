@@ -1,0 +1,22 @@
+
+if (mEngSelect.getVisibility() == View.VISIBLE) {
+    mLang = "eng";
+    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("LANG", "en").apply();
+    setLangRecreate("en");
+} else if (mHindiSelect.getVisibility() == View.VISIBLE) {
+    mLang = "hin";
+    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("LANG", "hi").apply();
+    setLangRecreate("hi");
+} else if (mGujSelect.getVisibility() == View.VISIBLE) {
+    mLang = "guj";
+    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("LANG", "gu").apply();
+    setLangRecreate("gu");
+}
+
+public void setLangRecreate(String langval) {
+        Configuration config = LanguageActivity.this.getResources().getConfiguration();
+        Locale locale = new Locale(langval);
+        Locale.setDefault(locale);
+        config.locale = locale;
+        LanguageActivity.this.getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+    }
